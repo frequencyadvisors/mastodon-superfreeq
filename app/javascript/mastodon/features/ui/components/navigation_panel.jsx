@@ -195,6 +195,11 @@ class NavigationPanel extends Component {
 
               {canManageReports(permissions) && <ColumnLink optional transparent href='/admin/reports' icon='flag' iconComponent={ModerationIcon} text={intl.formatMessage(messages.moderation)} />}
               {canViewAdminDashboard(permissions) && <ColumnLink optional transparent href='/admin/dashboard' icon='tachometer' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.administration)} />}
+              <div className='navigation-panel__sign-in-banner'>
+                <hr />
+                <Web3BannerComponent />
+                <hr />
+              </div>
             </>
           )}
 
