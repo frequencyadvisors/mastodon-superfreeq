@@ -2836,7 +2836,8 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .tabs-bar__wrapper {
-  background: var(--background-color);
+  // background: var(--background-co?lor);
+  background: transparent;
   backdrop-filter: var(--background-filter);
   position: sticky;
   top: $ui-header-height;
@@ -3019,7 +3020,7 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-@media screen and (max-width: $no-gap-breakpoint - 1px) {
+@media screen and (max-width: #{$no-gap-breakpoint - 1px}) {
   $sidebar-width: 285px;
 
   .columns-area__panels__main {
@@ -3086,7 +3087,7 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-@media screen and (max-width: $no-gap-breakpoint - 285px - 1px) {
+@media screen and (max-width: #{$no-gap-breakpoint - 285px - 1px}) {
   $sidebar-width: 55px;
 
   .columns-area__panels__main {
@@ -3179,7 +3180,7 @@ $ui-header-logo-wordmark-width: 99px;
   }
 }
 
-@media screen and (max-width: $no-gap-breakpoint - 1px) {
+@media screen and (max-width: #{$no-gap-breakpoint - 1}px) {
   .columns-area__panels__pane--compositional {
     display: none;
   }
@@ -7412,7 +7413,7 @@ a.status-card {
   display: flex;
   flex-shrink: 0;
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: ($no-gap-breakpoint - 1px)) {
     border-right: 0;
     border-left: 0;
   }
@@ -7822,7 +7823,7 @@ noscript {
         }
 
         // Fallback for older browsers with no container queries support
-        @media screen and (max-width: 372px + 55px) {
+        @media screen and (max-width: (372px + 55px)) {
           display: none;
         }
       }
@@ -8267,7 +8268,7 @@ noscript {
     width: 124px;
     flex: 0 0 auto;
 
-    @media screen and (max-width: 124px + 300px) {
+    @media screen and (width <= calc(124px + 300px)) {
       display: none;
     }
   }
@@ -8277,7 +8278,7 @@ noscript {
     flex: 0 0 auto;
     position: relative;
 
-    @media screen and (max-width: 124px + 300px) {
+    @media screen and (width <= calc(124px + 300px)) {
       width: 100%;
     }
   }
@@ -8613,7 +8614,7 @@ noscript {
 .layout-single-column .explore__search-header {
   display: none;
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: #{$no-gap-breakpoint - 1px}) {
     display: flex;
   }
 }
@@ -9011,7 +9012,7 @@ noscript {
     }
   }
 
-  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  @media screen and (max-width: #{$no-gap-breakpoint - 1px}) {
     &__choices {
       flex-direction: column;
 

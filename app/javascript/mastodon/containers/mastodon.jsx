@@ -19,6 +19,9 @@ import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
 import { isProduction } from 'mastodon/utils/environment';
 
+import { Web3Provider } from '../web3/Web3Provider';
+
+
 const title = isProduction() ? siteTitle : `${siteTitle} (Dev)`;
 
 const hydrateAction = hydrateStore(initialState);
@@ -52,17 +55,19 @@ export default class Mastodon extends PureComponent {
     return (
       <IdentityContext.Provider value={this.identity}>
         <IntlProvider>
-          <ReduxProvider store={store}>
-            <ErrorBoundary>
-              <Router>
-                <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
-                  <Route path='/' component={UI} />
-                </ScrollContext>
-              </Router>
+          <Web3Provider>
+            <ReduxProvider store={store}>
+              <ErrorBoundary>
+                <Router>
+                  <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
+                    <Route path='/' component={UI} />
+                  </ScrollContext>
+                </Router>
 
-              <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
-            </ErrorBoundary>
-          </ReduxProvider>
+                <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+              </ErrorBoundary>
+            </ReduxProvider>
+          </Web3Provider>
         </IntlProvider>
       </IdentityContext.Provider>
     );
