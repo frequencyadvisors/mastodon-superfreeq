@@ -16,17 +16,22 @@ const berachainParams = {
   blockExplorerUrls: ['https://bepolia.beratrail.io/'],
 };
 
-const WalletButton = ({account, setAccount}) => {
-  const {
-    // account: accountFromWeb3,
-    connectWallet,
-    // disconnectWallet
-  } = useWeb3();
-
+const WalletButton = ({ account, setAccount }) => {
+  const { connectWallet, handleSignMessage, checkIsSigned } = useWeb3();
   const [isBerachain, setIsBerachain] = useState(false);
+  const [isSigned, setIsSigned] = useState(false);
 
   // Updating state when account changes or when disconnected
   useEffect(() => {
+    const verifySignature = async () => {
+      const signed = await checkIsSigned();
+      setIsSigned(signed);
+    };
+
+    if (account) {
+      verifySignature();
+    }
+
     if (window.ethereum) {
       // Listening for account changes (disconnection or switch)
       window.ethereum.on('accountsChanged', (accounts) => {
@@ -52,9 +57,7 @@ const WalletButton = ({account, setAccount}) => {
         setIsBerachain(chainId.toLowerCase() === berachainParams.chainId.toLowerCase());
       });
     }
-  }, []);
-
-
+  }, [account, checkIsSigned, setAccount]);
 
   const handleSwitchNetwork = async () => {
     if (!window.ethereum) {
@@ -107,9 +110,15 @@ const WalletButton = ({account, setAccount}) => {
       <button onClick={handleSwitchNetwork} className='button button--block button-tertiary'>
         {getButtonLabel()}
       </button>
+      {account && !isSigned && (
+        <button onClick={handleSignMessage} className='button button--block button-tertiary'>
+          Sign Message to Log In
+        </button>
+      )}
     </div>
   );
 };
+
 WalletButton.propTypes = {
   account: PropTypes.string,
   setAccount: PropTypes.func.isRequired,

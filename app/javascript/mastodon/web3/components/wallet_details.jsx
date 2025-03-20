@@ -1,17 +1,30 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 
-const WalletDetails = (account) => {
+import { useWeb3 } from '../Web3Provider';
 
-  console.log(account);
+const WalletDetails = ({ account }) => {
+  const { checkIsSigned } = useWeb3();
+  const [isSigned, setIsSigned] = useState(false);
 
-  if (!account.account) {
+  useEffect(() => {
+    const verifySignature = async () => {
+      const signed = await checkIsSigned();
+      setIsSigned(signed);
+    };
+    if (account) {
+      verifySignature();
+    }
+  }, [account, checkIsSigned]);
+
+  if (!account) {
     return <><br /><p>Wallet not connected</p></>;
   } else {
     return (
       <div>
         <br />
         <p>
-        Connected Wallet:
+        Connected Wallet:   
         </p>
         <p style={{
           color: '#darkgrey',
@@ -22,15 +35,18 @@ const WalletDetails = (account) => {
           border: '1px solid #858afa',
           borderRadius: '15px',
           padding: '5px 15px',
-          fontSize: '0,3rem',
         }}>
-          {account.account}
+          {account}
         </p>
+        {isSigned ? <p style={{ color: 'green' }}><b>Signed</b></p> : <p style={{ color: 'red' }}><b>Not signed</b></p>}
+        {/* <p>Network: {network ? network.name : 'Unknown'}</p> */}
       </div>
     );
   }
+};
 
-
+WalletDetails.propTypes = {
+  account: PropTypes.string,
 };
 
 export default WalletDetails;

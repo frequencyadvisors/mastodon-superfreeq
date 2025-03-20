@@ -174,8 +174,6 @@ class NavigationPanel extends Component {
           {!signedIn && (
             <div className='navigation-panel__sign-in-banner'>
               <hr />
-              <Web3BannerComponent />
-              <hr />
               { disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner /> }
             </div>
           )}
