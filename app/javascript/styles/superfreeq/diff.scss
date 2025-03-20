@@ -1,0 +1,45 @@
+body {
+  background:
+    radial-gradient(circle, #4c2766 0%, #000000 100%),
+    url('images/honeycomb.png') repeat;
+  background-size: cover, auto;
+  background-repeat: no-repeat, repeat;
+  background-position: center, center;
+  background-blend-mode: overlay;
+  background-attachment: fixed;
+  overflow-x: hidden;
+
+  p {
+    color: lightgrey;
+  }
+}
+
+.search__input,
+.compose-form__highlightable {
+  background: rgba(76, 39, 102, 50%);
+}
+
+.compose-form .autosuggest-textarea__textarea,
+.compose-form .spoiler-input__input {
+  background: transparent;
+}
+
+.tabs-bar__wrapper {
+  background: transparent;
+}
+
+.hashtag-bar {
+  a {
+    // background: var(--surface-variant-background-color);
+    border: 1px solid #858afa;
+    background: transparent;
+  }
+}
+
+.link-footer p {
+  color: grey;
+
+  a {
+    color: rgb(133, 138, 250);
+  }
+}

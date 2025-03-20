@@ -2836,8 +2836,7 @@ $ui-header-logo-wordmark-width: 99px;
 }
 
 .tabs-bar__wrapper {
-  // background: var(--background-co?lor);
-  background: transparent;
+  background: var(--background-color);
   backdrop-filter: var(--background-filter);
   position: sticky;
   top: $ui-header-height;
@@ -9805,10 +9804,7 @@ noscript {
     color: inherit;
     text-decoration: none;
     padding: 4px 12px;
-
-    // background: var(--surface-variant-background-color);
-    border: 1px solid #858afa;
-    background: transparent;
+    background: var(--surface-variant-background-color);
     border-radius: 4px;
     font-weight: 500;
 

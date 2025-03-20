@@ -9,15 +9,6 @@
 body {
   font-family: $font-sans-serif, sans-serif;
   background: var(--background-color);
-  background:
-    radial-gradient(circle, #4c2766 0%, #000000 100%),
-    url('images/honeycomb.png') repeat;
-  background-size: cover, auto;
-  background-repeat: no-repeat, repeat;
-  background-position: center, center;
-  background-blend-mode: overlay;
-  background-attachment: fixed;
-  overflow-x: hidden;
   font-size: 13px;
   line-height: 18px;
   font-weight: 400;
