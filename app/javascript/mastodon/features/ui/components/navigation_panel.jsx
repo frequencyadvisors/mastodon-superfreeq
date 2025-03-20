@@ -30,7 +30,7 @@ import StarActiveIcon from '@/material-icons/400-24px/star-fill.svg?react';
 import StarIcon from '@/material-icons/400-24px/star.svg?react';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { IconWithBadge } from 'mastodon/components/icon_with_badge';
-import { WordmarkLogo } from 'mastodon/components/logo';
+// import { WordmarkLogo } from 'mastodon/components/logo';
 import { NavigationPortal } from 'mastodon/components/navigation_portal';
 import { identityContextPropShape, withIdentity } from 'mastodon/identity_context';
 import { timelinePreview, trendsEnabled } from 'mastodon/initial_state';
@@ -38,10 +38,14 @@ import { transientSingleColumn } from 'mastodon/is_mobile';
 import { canManageReports, canViewAdminDashboard } from 'mastodon/permissions';
 import { selectUnreadNotificationGroupsCount } from 'mastodon/selectors/notifications';
 
+import FreeqLogo from '../../../../freeq_assets/glow.svg?react';
+import Web3BannerComponent from '../../../web3/components/web3_banner';
+
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import { ListPanel } from './list_panel';
 import SignInBanner from './sign_in_banner';
+
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -134,8 +138,12 @@ class NavigationPanel extends Component {
 
     return (
       <div className='navigation-panel'>
-        <div className='navigation-panel__logo'>
-          <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
+        <div className='navigation-panel__logo' style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+          <Link to='/' className='column-link column-link--logo'><img src={FreeqLogo} alt='Freeq' />
+          </Link>
+          <span style={{ fontSize: '0.7rem', color: 'grey' }}>povered by Mastodon</span>
+
+          {/* <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link> */}
         </div>
 
         {banner &&
@@ -185,6 +193,11 @@ class NavigationPanel extends Component {
 
               {canManageReports(permissions) && <ColumnLink optional transparent href='/admin/reports' icon='flag' iconComponent={ModerationIcon} text={intl.formatMessage(messages.moderation)} />}
               {canViewAdminDashboard(permissions) && <ColumnLink optional transparent href='/admin/dashboard' icon='tachometer' iconComponent={AdministrationIcon} text={intl.formatMessage(messages.administration)} />}
+              <div className='navigation-panel__sign-in-banner'>
+                <hr />
+                <Web3BannerComponent />
+                <hr />
+              </div>
             </>
           )}
 
